@@ -1,28 +1,17 @@
 import express from "express";
+import todosRoutes from "./routes/todos.routes.js";
+import bodyParser from "body-parser";
 
 //create express app
 const app = express();
 
-//Define routes
-app.get('/', (req, res) => {
-    console.log(req.query, req.headers);
-    res.send("Over and out");
-});
+//apply middlewares
+app.use(bodyParser.json);
+
+//Use routes
+app.use(todosRoutes);
 
 //Listen for incoming requests
 app.listen(4000, () => {
     console.log("Express app is running!")
-});
-
-
-//define new route
-app.get('/ping', (req, res) => {
-console.log(req.query, req.headers);
-res.send("ping pong")
-});
-
-
-app.get('/file', (req, res) =>{
-    console.log(process.cwd())
-    res.sendFile(process.cwd() +"./index.html");
 });
