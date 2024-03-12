@@ -6,7 +6,8 @@ import bodyParser from "body-parser";
 const app = express();
 
 //apply middlewares
-app.use(bodyParser.json);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 //Use routes
 app.use(todosRoutes);
